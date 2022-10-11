@@ -1,4 +1,4 @@
-package pwd
+package user
 
 import "testing"
 
