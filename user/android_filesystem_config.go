@@ -255,6 +255,7 @@ var AndroidIDs = []AndroidIDInfo{
 	{"net_bw_stats", AidNetBwStats},
 	{"net_bw_acct", AidNetBwAcct},
 	{"misc", AidMisc},
+	{"everybody", AidEverybody},
 	{"nobody", AidNobody},
 }
 
