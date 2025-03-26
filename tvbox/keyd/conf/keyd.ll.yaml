@@ -1,0 +1,13 @@
+shell: "/system/bin/sh"
+sysfs: "/devices/virtual/input/input0" # 李亮移动盒子
+hooks:
+  - key: "0001 0066 00000000" # home键
+    cmd: "am start com.dangbei.tvlauncher"
+  - key: "0001 00b8 00000000" # #键
+    cmd: "adbd"
+
+log:
+  enable: false
+  color: true
+  level: "TRACE"
+  output: "/data/zzy/keyd/keyd.log"

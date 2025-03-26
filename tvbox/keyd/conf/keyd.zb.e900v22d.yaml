@@ -1,0 +1,10 @@
+shell: "/system/bin/sh"
+sysfs: "/devices/virtual/misc/uhid/0005:0416:0300.0001/input/input4"
+hooks:
+  - key: "0004 0004 000c00f0"
+    cmd: "am start com.dangbei.tvlauncher"
+log:
+  enable: false
+  color: true
+  level: "TRACE"
+  output: "/data/zzy/keyd/keyd.log"

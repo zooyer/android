@@ -1,0 +1,10 @@
+shell: "/system/bin/sh"
+input: "/devices/meson_remote.11/input/input0"
+hooks:
+  - key: "0001 01d4 00000001"
+    cmd: "am force-stop com.fiberhome.iptv && am start com.dangbei.tvlauncher"
+log:
+  enable: true
+  color: true
+  level: "TRACE"
+  output: "/data/zzy/keyd/keyd.log"
