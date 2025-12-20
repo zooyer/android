@@ -1,11 +1,12 @@
-module github.com/zooyer/android
+module android
 
 go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/zooyer/embed v0.0.3
+	github.com/zooyer/android v0.0.5
 	github.com/zooyer/miskit v1.0.72
+	golang.org/x/sys v0.20.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -32,7 +33,6 @@ require (
 	golang.org/x/arch v0.8.0 // indirect
 	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
-	golang.org/x/sys v0.20.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
 )

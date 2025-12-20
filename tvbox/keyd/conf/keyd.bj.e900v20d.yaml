@@ -1,0 +1,22 @@
+debug: false
+device:
+  - name: "蓝牙遥控"
+    ident:
+      bus: 0x03
+      vendor: 0x18d1
+      product: 0x0001
+      version: 1
+    input: "/dev/input/event3" # 蓝牙遥控
+    hooks:
+      - action: CLICK # 单击
+        keycode: 172 # HOME
+        command: "am start com.dangbei.tvlauncher"
+      - action: DOUBLE # 双击
+        keycode: 249 # 系统设置
+        command: "am start -a android.settings.SETTINGS"
+      - action: LONG # 长按（代码中定义时长）
+        keycode: 249 # 第三方设置
+        command: "am start tv.icntv.vendor/.main"
+      - action: REPEAT # 重复触发（代码中定义时间间隔）
+        keycode: 249
+        command: "echo 长按设置按键中..."

@@ -61,8 +61,8 @@ github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/ugorji/go/codec v1.2.12 h1:9LC83zGrHhuUA9l16C9AHXAqEV/2wBQ4nkvumAE65EE=
 github.com/ugorji/go/codec v1.2.12/go.mod h1:UNopzCgEMSXjBc6AOMqYvWC1ktqTAfzJZUZgYf6w6lg=
-github.com/zooyer/embed v0.0.3 h1:kX8lrRr42BCYlx+4GaypsGhqq1HJMq4k7gobPozaQyI=
-github.com/zooyer/embed v0.0.3/go.mod h1:8/Rs29yWm+SNGy2iAXS7k2XuNEkPz7SoMrjLqM8SkJY=
+github.com/zooyer/android v0.0.5 h1:sE7WNwHHJlf0R6/eysxnvSn18gdqOGRZB7jIDR5u8Pg=
+github.com/zooyer/android v0.0.5/go.mod h1:vo2mOygf70iqilzwb9E4f4mSTS05OX4G3lN1kYG6vis=
 github.com/zooyer/miskit v1.0.72 h1:LN8l66Vg40XBBBb9E1fpuGQLP7JyvWYw6Yon5mEGdIA=
 github.com/zooyer/miskit v1.0.72/go.mod h1:26cF4c5MnfNdKIl+z1gt4pwHpg3kjYiBPi/v/9MqWA8=
 golang.org/x/arch v0.0.0-20210923205945-b76863e36670/go.mod h1:5om86z9Hs0C8fWVUuoMHwpExlXzs5Tkyp9hOrfG7pp8=
