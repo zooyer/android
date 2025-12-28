@@ -45,7 +45,7 @@ echo "Building..."
 go build -o $model -ldflags "-s -w"
 
 echo "Compression by upx..."
-#upx --brute $model
+upx --brute $model
 
 echo "Make directory..."
 mkdir -p deploy

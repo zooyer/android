@@ -19,11 +19,11 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/zooyer/android/user"
+	"android/library/user"
 )
 
 func help() {
-	fmt.Println("usage: su [--path,-p] [UID[,GID[,GID2]...]] [COMMAND [ARG...]]")
+	fmt.Println("usage:", os.Args[0], "[--path,-p] [UID[,GID[,GID2]...]] [COMMAND [ARG...]]")
 	fmt.Println()
 	fmt.Println("Switch to WHO (default 'root') and run the given command (default sh).")
 	fmt.Println()
@@ -33,7 +33,7 @@ func help() {
 }
 
 func help13() {
-	fmt.Println("usage: su [--path,-p] [WHO [COMMAND...]]")
+	fmt.Println("usage:", os.Args[0], "[--path,-p] [WHO [COMMAND...]]")
 	fmt.Println()
 	fmt.Println("Switch to WHO (default 'root') and run the given COMMAND (default sh).")
 	fmt.Println()

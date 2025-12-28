@@ -20,3 +20,6 @@ am start com.dangbei.tvlauncher
 
 ##### 查看遥控器设备
 cat /proc/bus/input/devices
+
+##### 获取所有输入法
+ime -a
