@@ -3,9 +3,12 @@ package main
 import (
 	"encoding/binary"
 	"flag"
+	"fmt"
 	"os"
 	"os/exec"
 	"os/signal"
+	"path/filepath"
+	"strings"
 	"sync"
 	"syscall"
 	"time"
@@ -389,7 +392,7 @@ func run(dev conf.Device) {
 	mutex.Unlock()
 
 	// 创建虚拟设备
-	ui, err := uinput.Create(dev.Name, dev.Ident, append(keys, conf.Config.Codes...)...)
+	ui, err := uinput.Create(fmt.Sprintf("%s.keyd", dev.Name), dev.Ident, append(keys, conf.Config.Codes...)...)
 	if err != nil {
 		log.Error("create uinput error:", err)
 		return
@@ -432,14 +435,90 @@ func run(dev conf.Device) {
 	}
 }
 
+type Event struct {
+	Path    string // /dev/input/event4
+	Name    string // CMCC_Voice_Remote
+	Unique  string // 0c:f3:ce:1e:35:85
+	Vendor  string // 0416
+	Product string // 0300
+	Bustype string // 0005
+	Version string // 0000
+}
+
+// 读取单个文件内容，去换行空格
+func readFile(path string) (string, error) {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+
+	return strings.TrimSpace(string(b)), nil
+}
+
+func readEvent(event string) (_ *Event, err error) {
+	var base = filepath.Join("/sys/class/input", event, "device")
+
+	var e = Event{Path: filepath.Join("/dev/input", event)}
+
+	if e.Name, err = readFile(filepath.Join(base, "name")); err != nil {
+		return
+	}
+
+	if e.Unique, err = readFile(filepath.Join(base, "uniq")); err != nil {
+		return
+	}
+
+	if e.Vendor, err = readFile(filepath.Join(base, "id/vendor")); err != nil {
+		return
+	}
+
+	if e.Product, err = readFile(filepath.Join(base, "id/product")); err != nil {
+		return
+	}
+
+	if e.Bustype, err = readFile(filepath.Join(base, "id/bustype")); err != nil {
+		return
+	}
+
+	if e.Version, err = readFile(filepath.Join(base, "id/version")); err != nil {
+		return
+	}
+
+	return &e, nil
+}
+
 // TODO 重构完，待验证
 func main() {
 	utils.PrintBanner()
+
+	dirs, err := os.ReadDir("/dev/input")
+	if err != nil {
+		log.Error("read /dev/input:", err)
+	}
+
+	var events []Event
+	for _, file := range dirs {
+		var event *Event
+		if event, err = readEvent(file.Name()); err != nil {
+			log.Warn(file.Name(), err)
+			continue
+		}
+
+		log.Debug(event.Name, "event:", utils.MarshalString(event))
+		events = append(events, *event)
+	}
 
 	var wg sync.WaitGroup
 	wg.Add(len(conf.Config.Device))
 
 	for _, dev := range conf.Config.Device {
+		for _, event := range events {
+			if dev.Name == event.Name {
+				dev.Input = event.Path
+				break
+			}
+		}
+
 		var dev = dev
 		go func() {
 			defer wg.Done()
